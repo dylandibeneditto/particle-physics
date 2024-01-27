@@ -9,7 +9,7 @@ export default class Board {
         this.w = Math.floor(window.innerWidth / this.res) - 1;
         this.h = Math.floor(window.innerHeight / this.res) - 1;
 
-        /* private storage */
+        /* storage */
         this.array = new Array((this.w) * (this.h))
 
         this.write([1, 2], 2)

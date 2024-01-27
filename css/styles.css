@@ -1,0 +1,15 @@
+canvas#canvas {
+    left: 50vw;
+    top: 50vh;
+    transform: translate(-50%, -50%);
+    position: absolute;
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+html {
+    background: rgb(0,0,0)
+}

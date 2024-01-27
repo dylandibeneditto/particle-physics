@@ -3,6 +3,9 @@ canvas#canvas {
     top: 50vh;
     transform: translate(-50%, -50%);
     position: absolute;
+    image-rendering: pixelated;
+    width: 75vmin;
+    height: 75vmin;
 }
 
 body {

@@ -1,8 +1,11 @@
-import Board from './board.js'
+import Logic from './logic.js'
 
 export default class Particle {
     constructor(options) {
         this.position = options.position;
+        this.offset = options.offset;
+
+        this.board = new Logic().board;
     }
 
     /* updates the position of the particle (to be called each frame) */
@@ -10,13 +13,15 @@ export default class Particle {
         const pos = this.findDestination(...this.position)
 
         if (pos) {
-            this.logic.instructions.push(...this.position, ...pos)
+            this.board.buffer.push([this.position, pos.position]);
+            this.position = pos.position;
+            this.offset = pos.offset
         }
     }
 
     // erases this instance of the particle
     erase() {
-        this.board.array.splice( this.board.array.indexOf(this), 1 )
+        this.board.array.splice( this.offset, 1 )
     }
 }
 

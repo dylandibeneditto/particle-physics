@@ -11,8 +11,8 @@ export default class Display {
         /* storage */
         this.isAnimating = false;
 
-        this.dom.width = window.innerWidth;
-        this.dom.height = window.innerHeight;
+        this.dom.width = this.board.size-1;
+        this.dom.height = this.board.size-1;
         this.animation()
     }
 
@@ -28,14 +28,14 @@ export default class Display {
 
             const x = i % this.board.size;
             const y = Math.floor(i / (this.board.size));
-            const v = this.board.value(x, y)
-            if (v !== 0) {
-                this.logic.findDestination(x, y)
+            const v = this.board.array[i]
+            if (v) {
+                this.board.array[i].update()
                 ctx.fillStyle = `rgb(255,255,255)`
-                ctx.fillRect(x * this.board.res, y * this.board.res, this.board.res, this.board.res)
+                ctx.fillRect(x, y, 1, 1)
             }
 
         }
-        this.logic.swapAll()
+        this.board.applyBuffer()
     }
 }

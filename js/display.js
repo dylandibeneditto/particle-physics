@@ -3,12 +3,27 @@ export default class Display {
         /* input */
         this.dom = dom;
         this.board = board;
-        console.log(this.board)
+
+        /* storage */
+        this.isAnimating = false;
 
         this.dom.width = window.innerWidth;
         this.dom.height = window.innerHeight;
-        // called on window resize
-        window.addEventListener('resize', ()=> {
-        })
+    }
+
+    // self explanatory
+    startAnimation() {
+        this.isAnimating = true;
+        requestAnimationFrame(this.animation.bind(this))
+    }
+
+    // self explanatory
+    stopAnimation() {
+        this.isAnimating = false;
+    }
+
+    animation() {
+        console.log("FRAME")
+        if (this.isAnimating) requestAnimationFrame(this.animation.bind(this))
     }
 }

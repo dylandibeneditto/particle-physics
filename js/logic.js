@@ -16,7 +16,6 @@ export default class Logic {
         if (this.board.inBounds(...kernel[2])) {
             if (this.board.value(...kernel[2]) == 0) {
                 this.instruction.push([[x, y], kernel[2]])
-                console.log("FLIPPED")
             }
         }
     }

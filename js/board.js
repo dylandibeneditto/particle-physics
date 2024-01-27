@@ -74,6 +74,6 @@ export default class Board {
     }
 
     inBounds(x,y) {
-        return (x >= 0 && x <= this.w) && (y >= 0 && y <= this.h)
+        return (x >= 0 && x <= this.w) && (y >= 0 && y < this.h)
     }
 }

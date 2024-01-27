@@ -1,4 +1,6 @@
 import Board from "./board.js";
+import Display from "./display.js"
 
 let board = new Board(10)
-console.log(board)
+let display = new Display(document.getElementById("canvas"), board)
+console.log(board, display)

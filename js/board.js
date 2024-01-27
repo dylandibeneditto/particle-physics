@@ -26,7 +26,7 @@ export default class Board {
     index(x, y) {
 
         // check if number is within bounds
-        if ((x >= 0 && x <= this.w) && (y >= 0 && y <= this.h)) {
+        if (this.inBounds(x,y)) {
             return x + ((y - 1) * this.w)
         } else {
             throw new Error(`\n\nInputted coordinate (${x}, ${y})\nis not within boundaries of (width: ${this.w}, height: ${this.h})\n`)
@@ -71,5 +71,9 @@ export default class Board {
             throw new Error(`\n\nOne of the inputted values is the incorrect length, 'a': ${pa.length}, 'b': ${pb.length}\nExpected length for this input is 2\n`)
         }
 
+    }
+
+    inBounds(x,y) {
+        return (x >= 0 && x <= this.w) && (y >= 0 && y <= this.h)
     }
 }

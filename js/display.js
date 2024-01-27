@@ -6,7 +6,6 @@ export default class Display {
 
         /* storage */
         this.isAnimating = false;
-        this.counter = 1;
 
         this.dom.width = window.innerWidth;
         this.dom.height = window.innerHeight;
@@ -25,7 +24,6 @@ export default class Display {
     }
 
     animation() {
-        this.board.swap([(this.counter-1)%this.board.w, Math.floor((this.counter-1)/(this.board.w))],[this.counter%this.board.w, Math.floor(this.counter/(this.board.w))])
         this.render()
         if (this.isAnimating) requestAnimationFrame(this.animation.bind(this))
     }

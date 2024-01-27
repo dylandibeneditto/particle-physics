@@ -1,23 +1,13 @@
 export default class Board {
-    constructor(resolution) {
-        /* input */
-        this.res = resolution;
+    constructor(size) {
 
         /* commonly referenced values */
 
         // starts indexing at zero
-        this.w = Math.floor(window.innerWidth / this.res) - 1;
-        this.h = Math.floor(window.innerHeight / this.res) - 1;
+        this.size = size
 
         /* storage */
-        this.array = new Array((this.w) * (this.h))
-    }
-
-    // reinitializes width and height variables
-
-    resize() {
-        this.w = Math.floor(window.innerWidth / this.res) - 1;
-        this.h = Math.floor(window.innerHeight / this.res) - 1;
+        this.array = new Array(Math.pow(this.size, 2))
     }
 
     /* justified with origin in top left corner
@@ -27,9 +17,9 @@ export default class Board {
 
         // check if number is within bounds
         if (this.inBounds(x,y)) {
-            return x + ((y - 1) * this.w)
+            return x + ((y - 1) * this.size)
         } else {
-            throw new Error(`\n\nInputted coordinate (${x}, ${y})\nis not within boundaries of (width: ${this.w}, height: ${this.h})\n`)
+            throw new Error(`\n\nInputted coordinate (${x}, ${y})\nis not within boundaries of (width: ${this.size}, height: ${this.size})\n`)
         }
 
     }
@@ -41,9 +31,10 @@ export default class Board {
         return this.array[this.index(x, y)]==undefined ? 0 : this.array[this.index(x, y)]
     }
 
+    /*
     /* writes value to specified index
      * p - array of xy coord
-     * a - value which is to be written to the array  */
+     * a - value which is to be written to the array 
     write(p, a) {
 
         // check if a is a number
@@ -60,7 +51,7 @@ export default class Board {
     }
 
     /* swaps two values at two 2d indexes
-     * takes in two coordinate arrays  */
+     * takes in two coordinate arrays 
     swap(pa, pb) {
 
         if(pa.length == 2 && pb.length == 2) {
@@ -72,8 +63,9 @@ export default class Board {
         }
 
     }
+    */
 
     inBounds(x,y) {
-        return (x >= 0 && x <= this.w) && (y >= 0 && y < this.h)
+        return (x >= 0 && x <= this.size) && (y >= 0 && y < this.size)
     }
 }

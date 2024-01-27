@@ -2,7 +2,7 @@ import Logic from './logic.js'
 
 export default class Display {
     constructor(dom, board) {
-        this.logic = new Logic(board)
+        this.logic = new Logic();
 
         /* input */
         this.dom = dom;
@@ -13,23 +13,12 @@ export default class Display {
 
         this.dom.width = window.innerWidth;
         this.dom.height = window.innerHeight;
-        this.render()
-    }
-
-    // self explanatory
-    startAnimation() {
-        this.isAnimating = true;
-        requestAnimationFrame(this.animation.bind(this))
-    }
-
-    // self explanatory
-    stopAnimation() {
-        this.isAnimating = false;
+        this.animation()
     }
 
     animation() {
         this.render()
-        if (this.isAnimating) requestAnimationFrame(this.animation.bind(this))
+        requestAnimationFrame(this.animation.bind(this))
     }
 
     render() {
@@ -37,14 +26,13 @@ export default class Display {
         ctx.clearRect(0, 0, this.dom.width, this.dom.height)
         for (let i = 0; i < this.board.array.length; i++) {
 
-            const x = i % this.board.w;
-            const y = Math.floor(i / (this.board.w));
+            const x = i % this.board.size;
+            const y = Math.floor(i / (this.board.size));
             const v = this.board.value(x, y)
-
-            ctx.fillStyle = `rgb(${v * 255},${v * 255},${v * 255})`
-            ctx.fillRect(x * this.board.res, y * this.board.res, this.board.res, this.board.res)
             if (v !== 0) {
                 this.logic.findDestination(x, y)
+                ctx.fillStyle = `rgb(255,255,255)`
+                ctx.fillRect(x * this.board.res, y * this.board.res, this.board.res, this.board.res)
             }
 
         }

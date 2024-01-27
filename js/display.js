@@ -36,7 +36,6 @@ export default class Display {
         const ctx = this.dom.getContext("2d");
         ctx.clearRect(0, 0, this.dom.width, this.dom.height)
         for (let i = 0; i < this.board.array.length; i++) {
-            const item = this.board.array[i];
 
             const x = i % this.board.w;
             const y = Math.floor(i / (this.board.w));
@@ -49,5 +48,6 @@ export default class Display {
             }
 
         }
+        this.logic.swapAll()
     }
 }

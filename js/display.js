@@ -6,6 +6,7 @@ export default class Display {
 
         /* storage */
         this.isAnimating = false;
+        this.counter = 1;
 
         this.dom.width = window.innerWidth;
         this.dom.height = window.innerHeight;
@@ -24,6 +25,8 @@ export default class Display {
     }
 
     animation() {
+        this.board.swap([(this.counter-1)%this.board.w, Math.floor((this.counter-1)/(this.board.w))],[this.counter%this.board.w, Math.floor(this.counter/(this.board.w))])
+        this.render()
         if (this.isAnimating) requestAnimationFrame(this.animation.bind(this))
     }
 
@@ -37,7 +40,7 @@ export default class Display {
             const y = Math.floor(i/(this.board.w));
             const v = this.board.value(x,y)
 
-            ctx.fillStyle = `rgb(${v}*255,${v}*255,${v}*255)`
+            ctx.fillStyle = `rgb(${v*255},${v*255},${v*255})`
             ctx.fillRect(x*this.board.res, y*this.board.res, this.board.res, this.board.res)
         }
     }

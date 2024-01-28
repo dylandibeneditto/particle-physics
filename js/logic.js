@@ -1,6 +1,7 @@
 import Board from "./board.js"
 import Display from "./display.js"
 import Sand from './sand.js'
+import Water from './water.js'
 
 export default class Logic {
     static instance;
@@ -17,8 +18,8 @@ export default class Logic {
             const x = Math.floor(Math.random()*100)
             const y = Math.floor(Math.random()*100)
             if(!this.board.value(x,y)) {
-                this.board.write([x,y], new Sand({offset:x+(y*this.board.size), position:[x,y]}))
+                this.board.write([x,y], new Water({offset:x+(y*this.board.size), position:[x,y]}))
             }
-        }, 1)
+        }, 100)
     }
 }

@@ -13,6 +13,12 @@ export default class Logic {
         this.board = new Board(100);
         this.display = new Display(document.getElementById("canvas"), this.board)
 
-        this.board.write([5,2], new Sand({offset:5+(2*10), position:[5,2]}))
+        setInterval(()=> {
+            const x = Math.floor(Math.random()*100)
+            const y = Math.floor(Math.random()*100)
+            if(!this.board.value(x,y)) {
+                this.board.write([x,y], new Sand({offset:x+(y*this.board.size), position:[x,y]}))
+            }
+        }, 1)
     }
 }
